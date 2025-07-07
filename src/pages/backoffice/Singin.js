@@ -41,7 +41,7 @@ function SingIn() {
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Sign in to start your session</p>
 
-                    <form >
+                    <div >
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" placeholder="Email" onChange={e => setUser({...user, user: e.target.value})}/>
                             <div class="input-group-append">
@@ -71,7 +71,7 @@ function SingIn() {
                                 <button type="submit" class="btn btn-primary btn-block" onClick={handleSingIn}>Sign In</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="social-auth-links text-center mb-3">
                         <p>- OR -</p>
