@@ -1,6 +1,6 @@
 function MyModal(props) {
     return <>
-        <div className="modal" tabindex="-1" id={props.id}>
+        <div className="modal" id={props.id}>
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
