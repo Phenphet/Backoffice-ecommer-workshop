@@ -19,7 +19,13 @@ function Product() {
             product.img = ''
             product.price = parseInt(product.price)
             product.cost = parseInt(product.cost)
-            const res = await axios.post(config.apiPath + '/product/create', product , config.headers)
+            let res
+            if(product.id === undefined){
+                res = await axios.post(config.apiPath + '/product/create', product , config.headers)
+            }else{
+                res = await axios.put(config.apiPath + '/product/update', product, config.headers())
+            }
+           
 
             if(res.data.message === 'success'){
                 Swal.fire({
@@ -29,6 +35,10 @@ function Product() {
                     timer: 2000
                 })
                 document.getElementById('modalProduct_btnClose').click()
+
+                fetchData()
+
+                setProduct({...product, id: undefined})
             }
         } catch(e) {
             Swal.fire({
@@ -63,11 +73,68 @@ function Product() {
         })
     }
 
+    const handleRemove = async (item) => {
+        try {
+            const button = await Swal.fire({
+                text: 'remove tiem',
+                title: 'remove',
+                icon: 'question',
+                showCancelButton: true,
+                showConfirmButton: true
+            })
+
+            if(button.isConfirmed){
+                const res = await axios.delete(config.apiPath + '/product/remove/' + item.id, config.headers)
+
+                if (res.data.message === 'success'){
+                    Swal.fire({
+                        title: 'remove',
+                        text: 'remove success',
+                        icon: 'success',
+                        timer: 2000
+                    })
+
+                    fetchData()
+                }
+            }
+        } catch (e) {
+             Swal.fire({
+                title: 'error',
+                text: e.message,
+                icon: 'error'
+            })
+        }
+    }
+
     return <BackOffice>
         <div className='h4'>Product</div>
         <button className="btn btn-primary" data-toggle='modal' data-target='#modalProduct' onClick={clearForm}>
             <i className="fa fa-plus"></i> เพิ่มรายการ
         </button>
+
+        <table className="mt-3 table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th width='150px' className="text-right">cost</th>
+                    <th width='150px' className="text-right">price</th>
+                    <th width='140px'></th>
+                </tr>
+            </thead>
+            <tbody>
+                {products.length > 0 ? products.map((item, key) => 
+                    <tr key={key}>
+                        <td>{item.name}</td>
+                        <td className="text-right">{item.cost}</td>
+                        <td className="text-right">{item.price}</td>
+                        <td className="text-center">
+                            <button className='btn btn-primary mr-2' data-toggle='modal' data-target='#modalProduct' onClick={e => setProduct(item)}><i className="fa fa-edit"></i></button>
+                            <button className="btn btn-danger" onClick={e => handleRemove(item)}><i className='fa fa-times'></i></button>
+                        </td>
+                    </tr>
+                ): <></>}
+            </tbody>
+        </table>
 
         <MyModal id='modalProduct' title='สินค้า'>
             <div>
