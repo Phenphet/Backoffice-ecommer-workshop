@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Swal from "sweetalert2"
 import config from '../../config'
 import { useNavigate } from "react-router-dom"
@@ -14,7 +14,7 @@ function SingIn() {
             
             if(res.data.token !== undefined){
                 localStorage.setItem('token', res.data.token)
-                navigate('/home')
+                navigate('/dashboard')
             }
         } catch (e) {
             if(e.response.status === 401) {
@@ -32,10 +32,27 @@ function SingIn() {
             }
         }
     }
+
+    useEffect(() => {checkSingIn()}, [])
+
+    const checkSingIn = async() => {
+        try {
+            if(localStorage.getItem('token')){
+                navigate('/dashboard')
+            }
+            else {
+                navigate('/')
+            }
+        } catch (e) {
+            console.log(e.message)
+            navigate('/')
+        }
+    }
+
     return <div className="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="../../index2.html"><b>Admin</b>LTE</a>
+                <a href=""><b>Ecommer BackOffice</b></a>
             </div>
             <div class="card">
                 <div class="card-body login-card-body">
@@ -59,36 +76,11 @@ function SingIn() {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input type="checkbox" id="remember" />
-                                    <label for="remember">
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4">
+                            <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-block" onClick={handleSingIn}>Sign In</button>
                             </div>
                         </div>
                     </div>
-
-                    <div class="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                        </a>
-                    </div>
-
-                    <p class="mb-1">
-                        <a href="forgot-password.html">I forgot my password</a>
-                    </p>
-                    <p class="mb-0">
-                        <a href="register.html" class="text-center">Register a new membership</a>
-                    </p>
                 </div>
             </div>
         </div>

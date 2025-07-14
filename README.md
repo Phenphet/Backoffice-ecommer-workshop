@@ -1,3 +1,55 @@
+# Workshop Ecommerce
+
+## Feature Programs
+
+### Login page 
+[-] user ทำการเข้าสู่ระบบด้วยระบบ Jwt login
+
+### Dashboard page
+[-] แสดงยอดขายตามเดือนในปีนั้นๆ
+
+### product page
+[-] ทำการแสดงรายการสินค้า
+
+[-] เพิ่มสินค้า
+
+[-] ลบสินค้า
+
+[-] แก้ไขสินค้า
+
+[-] สามารถเพิ่มรายการสินค้าจาก excel
+
+### รายงานยอดขาย page
+[-] แสดงรายงานทั้งหมด
+
+[-] สามารถเรียกดูตามชื่อลูกค้า
+
+[-] แก้ไขสถานะ 
+
+[-] ทำการยกเลิกรายการ
+ 
+## หน้าตาโปรเจกต์
+
+### หน้า Login
+![Login Screenshot](./src/assets/Screenshot%202025-07-14%20110312.png)
+
+### หน้า Dashboard
+![Dashboard Screenshot](./src/assets/Screenshot%202025-07-14%20111733.png)
+
+### หน้า Product
+![Product Screenshot](./src/assets/Screenshot%202025-07-14%20111804.png)
+
+### หน้า รายงานยอดขาย
+![Product Screenshot](./src/assets/Screenshot%202025-07-14%20111839.png)
+
+## ระบบอื่น ๆ
+
+[Api-ecommer-workshop](https://github.com/Phenphet/Api-ecommer-workshop)
+
+[Fontend-ecommer-workshop ](https://github.com/Phenphet/Fontend-ecommer-workshop)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

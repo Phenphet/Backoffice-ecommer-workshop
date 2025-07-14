@@ -25,6 +25,8 @@ function Sidebar() {
         text: e.message,
         icon: 'error'
       })
+
+      navigate('/')
     }
   }
   const handleSignOut = async() => {

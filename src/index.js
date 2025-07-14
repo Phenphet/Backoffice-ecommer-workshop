@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom'
 
 import SingIn from './pages/backoffice/Singin';
-import Home from './pages/backoffice/Home';
 import Product from './pages/backoffice/Product';
 import BillSale from './pages/backoffice/BillSale';
 import DashBoard from './pages/backoffice/Dashbord';
@@ -15,10 +14,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <SingIn/>
-  },
-  {
-    path: '/home',
-    element: <Home />
   },
   {
     path: '/product',
